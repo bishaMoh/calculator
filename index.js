@@ -1,57 +1,80 @@
+const numbers = document.querySelectorAll(".number-raw");
 const display = document.querySelector(".display");
-const buttons = document.querySelectorAll("button");
+const operators = document.querySelectorAll(".oparator");
+const equals = document.querySelector(".oparator-equal");
+const clean = document.querySelector(".oparator-clear");
 
-function add(a, b){
-    return (a + b);
-}
+ // the oparation copponents
+ let firstNumber = "";
+ let secondNumber = "";
+ let currentOparation = null;
+ let shouldResetScreen = false;
 
-function suptract(a, b){
-    return (a - b);
-}
-
-function multiply (a, b){
-    return (a * b);
-}
-
-function divide(a, b){
-    return (a / b);
-}
-
-let firstNumber = 0;
-let oparator
-let secondNumber
-
-function oparate(num, opr, num2){
-    const result = 0;
-    //running one of the function on these two numbers
-    if(opr === "+"){
-        result = add(num, num2);
-        return result;
-    }else if(opr === "-"){
-        result = suptract(num, num2);
-        return result;
-    }else if (opr === "*"){
-        result = multiply(num, num2);
-        return result;
-    }else if (opr === "/"){
-        result = divide(num, num2);
-        return result;
+function operate(operator, a, b) {
+    a = Number(a);
+    b = Number(b);
+    switch (operator) {
+      case "+":
+        return a + b;
+      case "-":
+        return a - b;
+      case "*":
+        return a * b;
+      case "/":
+        return b === 0 ? "Error" : a / b;
+      default:
+        return null;
     }
+  }
+
+numbers.forEach((numberButton) => {
+  numberButton.addEventListener("click", () => appendNumber(numberButton.textContent));
+});
+
+operators.forEach((button) => {
+  button.addEventListener("click", () => setOparation(button.textContent));
+});
+ 
+equals.addEventListener("click", evaluate);
+clean.addEventListener("click", clear);
+
+function appendNumber(number) {
+  if (shouldResetScreen || display.textContent === "0") {
+      display.textContent = number;
+      shouldResetScreen = false;
+  } else {
+      display.textContent += number;
+  }
+}
+
+  function setOparation(opr) {
+    if (currentOparation !== null && !shouldResetScreen) {
+        evaluate();
+    }
+    firstNumber = display.textContent;
+    currentOparation = opr;
+    shouldResetScreen = true;
 }
 
 
-display.textContent = "";
 
 
-function populate(){
-    buttons.forEach((button) => {
-        button.addEventListener("click", (e) => {
-            display.textContent = e.target.textContent; 
-        });
-    })
+  function evaluate() {
+    if (currentOparation === null) return;
+    secondNumber = display.textContent;
+    const result = operate(currentOparation, Number(firstNumber), Number(secondNumber));
+    
+    display.textContent = result;
+    firstNumber = result; // Store result for next operation
+    currentOparation = null;
+    shouldResetScreen = true;
 }
-populate();
 
-for(let i = 0; i < 3; i++){
 
+  function clear() {
+    firstNumber = "";
+    secondNumber = "";
+    currentOparation = null;
+    shouldResetScreen = false;
+    display.textContent = "0";
 }

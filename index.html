@@ -3,39 +3,43 @@
     <head>
         <meta charset="UTF-8">
         <title>Calculator</title>
-    </head>
+        <link rel="stylesheet" href="style.css">
+        </head>
     <body>
-        <div class="display">   
-            0
-        </div>
-        
-        <div class="oparators">
-            <button class="oparators-adding">+</button>
-            <button class="oparators-suptracting">-</button>
-            <button class="oparators-multiplying">*</button>
-            <button class="oparators-dividing">/</button>
-            <button class="oparators-equal">=</button>
-            <button class="oparators-clear">AC</button>
-        </div>
-        <div class="numbers">
-            <div class="number-raw-top">
-                <button class="number-raw">7</button>
-                <button class="number-raw">8</button>
-                <button class="number-raw">9</button>
+        <div class="container">
+            <div class="display">   
+                
             </div>
-            <div class="number-raw-center">
-                <button class="number-raw">4</button>
-                <button class="number-raw">5</button>
-                <button class="number-raw">6</button>
-            </div>            
-            <div class="number-raw-bottom">
-                <button class="number-raw">1</button>
-                <button class="number-raw">2</button>
-                <button class="number-raw">3</button>
+                <div class="buttons">
+                   
+                    <div class="numbers">
+                        <div class="number-raw-top">
+                            <button class="number-raw">7</button>
+                            <button class="number-raw">8</button>
+                            <button class="number-raw">9</button>
+                        </div>
+                        <div class="number-raw-center">
+                            <button class="number-raw">4</button>
+                            <button class="number-raw">5</button>
+                            <button class="number-raw">6</button>
+                        </div>            
+                        <div class="number-raw-bottom">
+                            <button class="number-raw">1</button>
+                            <button class="number-raw">2</button>
+                            <button class="number-raw">3</button>
+                        </div>
+                        <button class="number-raw">0</button>
+                </div>
+                <div class="oparators">
+                    <button class="oparator">+</button>
+                    <button class="oparator">-</button>
+                    <button class="oparator">*</button>
+                    <button class="oparator">/</button>
+                    <button class="oparator-equal">=</button>
+                    <button class="oparator-clear">AC</button>
+                </div>
             </div>
-            <button class="dot">0</button>
         </div>
-
         <script src="index.js"></script>
     </body>
 </html>
